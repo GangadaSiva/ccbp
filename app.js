@@ -51,7 +51,7 @@ obj.post("/players/", async (request, Response) => {
   let sqlPostQueuery = `
      INSERT INTO cricket_team
         (player_name,jersey_number,role)
-        values(${playerName},${jerseyNumber},${role});
+        values('${playerName}','${jerseyNumber}','${role}');
     `;
   await db.run(sqlPostQueuery);
   Response.send("Player Added to Team");
@@ -74,9 +74,9 @@ obj.put("/players/:playerId/", async (request, response) => {
   let sqlUpdate = `
         UPDATE cricket_team
         SET
-           player_name = ${playerName},
-           jersey_number = ${jerseyNumber},
-           role = ${role}
+           player_name = '${playerName}',
+           jersey_number = '${jerseyNumber}',
+           role = '${role}'
         WHERE
             player_id = ${playerId};    
     `;
